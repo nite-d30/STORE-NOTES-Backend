@@ -76,3 +76,29 @@ exports.roomavailability = (req, res) =>{
         }
     })
 }
+
+exports.bookigroom=(req,res)=>{
+
+    let bookobj=req.body;
+    if(!bookobj['uuid'])
+        bookobj['uuid']=uuidv4();
+
+        const checkbooking=bookingmodel.findOneAndUpdate({uuid:bookobj['uuid']},bookobj)
+
+        checkbooking.then(data=>{
+                    if(data == null){
+                        const book=new bookingmodel(bookobj)
+
+                        book.save().then(data=>{
+                            res.send({status:true,msg:'booking confirmed'})
+                        }).catch(err=>{
+                            res.status(404)
+                        })
+                    }else{
+                        res.send({msg:'booking Updated'})
+                    }
+        }).catch(err=>{
+            res.send(404);
+        })
+}
+

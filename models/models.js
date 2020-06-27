@@ -19,8 +19,14 @@ const roomsScheema=mongoose.Schema({
 })
 
 const checkbooking = mongoose.Schema({
-    startdate:String,
-    enddate:String
+    uuid:String,
+    email:String,
+    roomName:String,
+    startDate:Number,
+    enddate:Number,
+    startTime:Number,
+    endTime:Number,
+    delegats:Array
 })
 
 const delegateSchema=mongoose.Schema({
@@ -28,6 +34,8 @@ const delegateSchema=mongoose.Schema({
     username:String,
     contact:Number
 })
+
+
 
 const userdetailModel=mongoose.model('users',userdeatilSchema)
 const roomsModel=mongoose.model('rooms',roomsScheema)

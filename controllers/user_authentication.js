@@ -3,11 +3,11 @@ const { userdetailModel } = require('../models/models')
 const jwt = require('jsonwebtoken');
 
 exports.userauth = (req, res) => {
-
-    const user = userdetailModel.findOne({ username: req.body['email'], password: req.body['password'] })
+    const user = userdetailModel.findOne({ email: req.body['email'], password: req.body['password'] })
     user.then(data => {
+        console.log(data)
         if (data != null) {
-            res.status(200).send({ 'token': jwt.sign({ _id: data._id, username: data.username }, process.env.TOKEN_SECREATE, { expiresIn: '10m' }) })
+            res.status(200).send({ 'token': jwt.sign({ _id: data._id, username: data.email }, process.env.TOKEN_SECREATE, { expiresIn: '10m' }) })
         } else {
             res.status(404).send('username or password is invalid');
         }

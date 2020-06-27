@@ -59,11 +59,16 @@ exports.updaterooms=(req,res)=>{
 }
 
 exports.roomavailability = (req, res) =>{
-    bookingmodel.findOne({startdate :req.body.startdate , enddate : req.body.enddate}, function(err, data){
+    let obj = {startdate:req.body.startdate};
+    if( req.body.enddate){
+        obj['enddate'] = req.body.enddate;
+    }
+    bookingmodel.find(obj, function(err, data){
         if (err){
             res.send(err);
         }else{
-            if(data === null){
+            console.log(data)
+            if( data.length > 0){
                 res.send({availability: "no", msg:'Rooms are already booked please chose other dates '});
             }else{
                 res.send({availability: "yes", msg:'Rooms are available'});

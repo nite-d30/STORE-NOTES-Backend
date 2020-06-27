@@ -18,7 +18,13 @@ const roomsScheema=mongoose.Schema({
     price:Number
 })
 
+const checkbooking = mongoose.Schema({
+    startdate:String,
+    enddate:String
+})
+
 const userdetailModel=mongoose.model('users',userdeatilSchema)
 const roomsModel=mongoose.model('rooms',roomsScheema)
-module.exports ={userdetailModel,roomsModel};
+const bookingmodel = mongoose.model('bookingdetails',checkbooking)
+module.exports ={userdetailModel,roomsModel,bookingmodel};
 

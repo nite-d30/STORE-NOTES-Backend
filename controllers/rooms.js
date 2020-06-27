@@ -1,4 +1,4 @@
-const {roomsModel}=require('../models/models')
+const {roomsModel,bookingmodel}=require('../models/models')
 const _= require('lodash');
 const { v4: uuidv4 } = require('uuid');
 const jwtDecode = require('jwt-decode');
@@ -56,4 +56,18 @@ exports.updaterooms=(req,res)=>{
     // }).catch(err=>{
     //     res.status(400).send(err);
     // })
+}
+
+exports.roomavailability = (req, res) =>{
+    bookingmodel.findOne({startdate :req.body.startdate , enddate : req.body.enddate}, function(err, data){
+        if (err){
+            res.send(err);
+        }else{
+            if(data === null){
+                res.send({availability: "no", msg:'Rooms are already booked please chose other dates '});
+            }else{
+                res.send({availability: "yes", msg:'Rooms are available'});
+            }
+        }
+    })
 }

@@ -20,5 +20,6 @@ app.use('/api',notesroutes);
 app.use('/api/user',userrouts);
 
 
+
 const port = 8000;
 app.listen(port, () => {  console.log('server running on port ' + port);});

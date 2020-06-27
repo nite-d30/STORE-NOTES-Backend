@@ -4,9 +4,9 @@ const { v4: uuidv4 } = require('uuid');
 const jwtDecode = require('jwt-decode');
 
 exports.getrooms=(req,res)=>{
-  const filterobj=jwtDecode(req.headers['authorization']);
+
  
-const roomsdetail=roomsModel.find({email:filterobj['username']})
+const roomsdetail=roomsModel.find()
         roomsdetail.then(data=>{
             if(!data){
                 res.status(404).send({status:false,message:'No rooms found'});

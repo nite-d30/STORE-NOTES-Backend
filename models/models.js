@@ -23,8 +23,15 @@ const checkbooking = mongoose.Schema({
     enddate:String
 })
 
+const delegateSchema=mongoose.Schema({
+    email:String,
+    username:String,
+    contact:Number
+})
+
 const userdetailModel=mongoose.model('users',userdeatilSchema)
 const roomsModel=mongoose.model('rooms',roomsScheema)
 const bookingmodel = mongoose.model('bookingdetails',checkbooking)
-module.exports ={userdetailModel,roomsModel,bookingmodel};
+const delegateModel=mongoose.model('delgates',delegateSchema)
+module.exports ={userdetailModel,roomsModel,bookingmodel,delegateModel};
 

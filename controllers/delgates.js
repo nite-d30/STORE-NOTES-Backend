@@ -25,3 +25,17 @@ exports.delegate = (req, res) => {
         res.status(400);
     })
 }
+
+exports.adddelegate=(req,res)=>{
+    const delegateuser=new delegateModel(req.body)
+
+    delegateuser.save().then(data=>{
+        console.log(data)
+        if(data){
+            res.send({status:true})
+        }
+      
+    }).catch(err=>{
+        res.send(404);
+    })
+}

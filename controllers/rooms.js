@@ -1,12 +1,13 @@
 const {roomsModel}=require('../models/models')
 const _= require('lodash');
 const { v4: uuidv4 } = require('uuid');
+const jwtDecode = require('jwt-decode');
 
 exports.getrooms=(req,res)=>{
-  const user=req.headers['authorization'].split(' ')[1];
-  console.log(user)
-const roomsdetail=roomsModel.find({email:user})
-        roomsModel.then(data=>{
+  const filterobj=jwtDecode(req.headers['authorization']);
+ 
+const roomsdetail=roomsModel.find({email:filterobj['username']})
+        roomsdetail.then(data=>{
             if(!data){
                 res.status(404).send({status:false,message:'No rooms found'});
             }else{

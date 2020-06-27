@@ -15,7 +15,8 @@ const roomsScheema=mongoose.Schema({
     seatsoccupied:Number,
     projector:String,
     internet:String,
-    price:Number
+    price:Number,
+    table:String
 })
 
 const checkbooking = mongoose.Schema({

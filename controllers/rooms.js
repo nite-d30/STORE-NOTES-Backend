@@ -12,9 +12,8 @@ const roomsdetail=roomsModel.find()
                 res.status(404).send({status:false,message:'No rooms found'});
             }else{
                  let filteredarr=[];
-                 data.filter(el=>{
-                       
-                      filteredarr.push(_.pick(el,['uuid','roomName','seatsoccupied','projector','internet','price']))
+                 data.filter(el=>{       
+                      filteredarr.push(_.pick(el,['uuid','roomName','seatsoccupied','projector','internet','price', 'table']))
                     })
             
                 res.status(200).send({status:true,rooms:filteredarr})
@@ -60,9 +59,11 @@ exports.updaterooms=(req,res)=>{
 
 exports.roomavailability = (req, res) =>{
     let obj = {startdate:req.body.startdate};
+    
     if( req.body.enddate){
         obj['enddate'] = req.body.enddate;
     }
+    console.log(obj)
     bookingmodel.find(obj, function(err, data){
         if (err){
             res.send(err);

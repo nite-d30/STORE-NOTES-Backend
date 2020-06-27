@@ -18,7 +18,15 @@ const roomsScheema=mongoose.Schema({
     price:Number
 })
 
+const delegateSchema=mongoose.Schema({
+    email:String,
+    username:String,
+    contact:Number
+})
+
+const delegateModel=mongoose.model('delgates',delegateSchema)
 const userdetailModel=mongoose.model('users',userdeatilSchema)
 const roomsModel=mongoose.model('rooms',roomsScheema)
-module.exports ={userdetailModel,roomsModel};
+
+module.exports ={userdetailModel,roomsModel,delegateModel};
 

@@ -9,38 +9,20 @@ const userdeatilSchema=mongoose.Schema({
     confirmpassword:String
 })
 
-const roomsScheema=mongoose.Schema({
+const notesScheema=mongoose.Schema({
     uuid:String,
-    roomName:String,
-    seatsoccupied:Number,
-    projector:String,
-    internet:String,
-    price:Number,
-    table:String
+    title:String,
+    content:String,
+    email:String,
+    action:String,
+    createdTime:Date,
+    editedTime:Date
 })
 
-const checkbooking = mongoose.Schema({
-    uuid:String,
-    email:String,
-    roomName:String,
-    startDate:Number,
-    enddate:Number,
-    startTime:Number,
-    endTime:Number,
-    delegats:Array
-})
-
-const delegateSchema=mongoose.Schema({
-    email:String,
-    username:String,
-    contact:Number
-})
 
 
 
 const userdetailModel=mongoose.model('users',userdeatilSchema)
-const roomsModel=mongoose.model('rooms',roomsScheema)
-const bookingmodel = mongoose.model('bookingdetails',checkbooking)
-const delegateModel=mongoose.model('delgates',delegateSchema)
-module.exports ={userdetailModel,roomsModel,bookingmodel,delegateModel};
+const notesModel=mongoose.model('notes',notesScheema)
+module.exports ={userdetailModel,notesModel};
 

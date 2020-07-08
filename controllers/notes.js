@@ -8,13 +8,12 @@ exports.getnotes = (req, res) => {
 
     const notes = notesModel.find({email:req.query['email']})
     notes.then(data => {
-        console.log(data)
         if (!data) {
             res.status(404).send({ status: false, message: 'No notes found' });
         } else {
             let filteredarr = [];
             data.filter(el => {
-                filteredarr.push(_.pick(el, ['uuid', 'title', 'email', 'content', 'action']))
+                filteredarr.push(_.pick(el, ['uuid', 'title', 'email', 'content', 'action','createdTime','editedTime']))
             })
 
             res.status(200).send({ status: true, notes: filteredarr })

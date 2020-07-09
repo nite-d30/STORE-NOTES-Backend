@@ -54,3 +54,12 @@ exports.updatenotes = (req, res) => {
     })
 }
 
+exports.deletenote=(req,res)=>{
+     notesModel.deleteMany({uuid:{$in:req.body}}).then(data=>{
+        if(data){
+            res.send(data)
+        }
+    }).catch(err=>{
+        res.status(404);
+    })
+}

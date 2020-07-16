@@ -4,19 +4,18 @@ const { v4: uuidv4 } = require('uuid');
 const jwtDecode = require('jwt-decode');
 
 exports.getnotes = (req, res) => {
-
-
-    const notes = notesModel.find({email:req.query['email']})
+    const notes = notesModel.paginate({email:req.body['email']}, { page:req.body['pageNumber'], limit: req.body['pageSize'] })
+    
     notes.then(data => {
         if (!data) {
             res.status(404).send({ status: false, message: 'No notes found' });
         } else {
             let filteredarr = [];
-            data.filter(el => {
+            data.docs.filter(el => {
                 filteredarr.push(_.pick(el, ['uuid', 'title', 'email', 'content', 'action','createdTime','editedTime']))
             })
-
-            res.status(200).send({ status: true, notes: filteredarr })
+            res.status(200).send({ status: true,totalCount:data.total,notes: filteredarr })
+           
         }
 
     }).catch(err => {

@@ -1,5 +1,5 @@
 const mongoose=require('mongoose');
-
+const mongoosePaginate = require('mongoose-paginate');
 
 const userdeatilSchema=mongoose.Schema({
     username:String,
@@ -20,7 +20,7 @@ const notesScheema=mongoose.Schema({
 })
 
 
-
+notesScheema.plugin(mongoosePaginate)
 
 const userdetailModel=mongoose.model('users',userdeatilSchema)
 const notesModel=mongoose.model('notes',notesScheema)

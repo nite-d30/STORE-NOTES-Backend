@@ -1,1 +1,3 @@
 # STORE-NOTES-Backend
+# DATABESE NAME
+      NOTE-APP
